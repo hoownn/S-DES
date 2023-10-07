@@ -85,7 +85,7 @@
      <item>
       <widget class="QLabel" name="TextLabel">
        <property name="text">
-        <string>8位二进制明密文：   </string>
+        <string>字符串或8位二进制明密文：   </string>
        </property>
       </widget>
      </item>
@@ -107,7 +107,7 @@
      <item>
       <widget class="QLabel" name="KeyLabel">
        <property name="text">
-        <string>10位二进制原始密钥：</string>
+        <string>10位二进制原始密钥：        </string>
        </property>
       </widget>
      </item>

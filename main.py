@@ -30,17 +30,8 @@ def encrypt_0(bin_data_1, key_1):
         return "输入数据的格式或长度有误"
 
 def encrypt(bin_data ,key0):
-    # 输入8位二进制数据
-    # bin_data = input("请输入8位明文: ")
-    # key0 = input("请输入10位二进制原始密钥: ")
     print("输入明文为：", bin_data)
     print("输入密钥为：", key0)
-
-    if len(bin_data) != 8:
-        # print("输入的数据长度错误,必须是8位二进制数")
-        return "输入的数据长度错误,必须是8位二进制数"
-
-    print("输入数据为：", bin_data)
 
     # 初始置换盒
     initial_permutation_result = ip_box(bin_data)
@@ -55,7 +46,7 @@ def encrypt(bin_data ,key0):
     print('fk1的结果: ', r_fk1)
 
     # fk2
-    r_fk2 = fk(initial_permutation_result[4:8] + r_fk1, k2)  ##密码生成
+    r_fk2 = fk(initial_permutation_result[4:8] + r_fk1, k2)  # 密码生成
     print('fk2的结果: ', r_fk2)
 
     # 最终置换盒
@@ -72,7 +63,7 @@ def decrypt_0(bin_data_1, key_1):
     """
     bin_data_0 = bin_data_1
     try:
-        # 检验输入的是否为字符串，若为字符串则分解字符串后传入加密再将结果组合
+        # 检验输入的是否为字符串，若为字符串则分解字符串后传入解密再将结果组合
         if not all(c in '01' for c in bin_data_1):
             # 将字符串转换为ASCII码的二进制表示形式
             results = []
@@ -83,18 +74,15 @@ def decrypt_0(bin_data_1, key_1):
                 decrypted_char = chr(int(t, 2))
                 results.append(decrypted_char)
             print(results)
-            return "输入明文为：" + bin_data_0 + "\n输入密钥为：" + key_1 + "\n加密结果为：" + ''.join(results)
+            return "输入密文为：" + bin_data_0 + "\n输入密钥为：" + key_1 + "\n解密结果为：" + ''.join(results)
         else:
             if len(bin_data_1) != 8:
                 return "输入的数据长度错误,必须是8位二进制数"
             result = decrypt(bin_data_1, key_1)
-            return "输入明文为：" + bin_data_0 + "\n输入密钥为：" + key_1 + "\n加密结果为：" + str(result)
+            return "输入密文为：" + bin_data_0 + "\n输入密钥为：" + key_1 + "\n解密结果为：" + str(result)
     except ValueError:
         return "输入数据的格式或长度有误"
 def decrypt(bin_data, key0):
-    # 输入8位二进制数据
-    # bin_data = input("请输入8位密文: ")
-    # key0 = input("请输入10位二进制原始密钥: ")
     print("输入密文为：", bin_data)
     print("输入密钥为：", key0)
 
@@ -102,7 +90,7 @@ def decrypt(bin_data, key0):
     initial_permutation_result = ip_box(bin_data)
     print("初始置换盒结果: ", initial_permutation_result)
     # 两把密钥
-    k1,k2 = get_keys(key0)
+    k1, k2 = get_keys(key0)
     print("k1:", k1, "|k2:", k2)
     # fk2
     r_fk2 = fk(initial_permutation_result, k2)    # 密码生成
@@ -115,10 +103,3 @@ def decrypt(bin_data, key0):
     print("最终置换盒结果: ", final_permutation_result)
 
     return str(final_permutation_result)
-
-# if __name__ == "__main__":
-#     bin_data = input("请输入明文: ")
-#     key0 = input("请输入10位二进制原始密钥: ")
-#     encrypt_0(bin_data, key0)
-    # decrypt()
-    # 00001001

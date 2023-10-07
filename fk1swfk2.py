@@ -1,5 +1,5 @@
 def leftshift1(p10):
-    a = [p10[0],p10[5]]
+    a = [p10[0], p10[5]]
     p1 = []
     p2 = []
     for i in range(4):
@@ -8,10 +8,10 @@ def leftshift1(p10):
     for i in range(4):
         p2.append(p10[i+6])
     p2.append(a[1])
-    return p1 +p2
+    return p1 + p2
 
 def leftshift2(p10):
-    a = [p10[0],p10[1],p10[5],p10[6]]
+    a = [p10[0], p10[1], p10[5], p10[6]]
     p1 = []
     p2 = []
     for i in range(3):
@@ -22,10 +22,10 @@ def leftshift2(p10):
         p2.append(p10[i+7])
     p2.append(a[2])
     p2.append(a[3])
-    return p1+p2
+    return p1 + p2
 def get_keys(k0):
     # 第一个交换盒
-    # k0 = [1,2,3,4,5,6,7,8,9,0]  #十位的原始密钥
+    # k0 = [1,2,3,4,5,6,7,8,9,0]  # 十位的原始密钥
     p10 = []
     # p10置换
     for j in [3, 5, 2, 7, 4, 10, 1, 9, 8, 6]:
@@ -62,7 +62,7 @@ def fk(text,key):
     textR = text[4:8]
 
     # 2.包含一个轮函数
-    rF = F(textR,key)
+    rF = F(textR, key)
 
     # 3.异或    轮函数的结果和textleft异或
     
@@ -78,7 +78,7 @@ def F (textR, k):
     '''
     textR = list(textR)
     k = list(k)
-    #1.扩展置换
+    # 1.扩展置换
     rr = extend_subt(textR)
 
     # 2.用轮密钥
@@ -87,7 +87,7 @@ def F (textR, k):
         rr[i] = int(rr[i])
     for i in range(len(rr)):   # 把k的每个元素改为int
         k[i] = int(k[i])        
-    a = []  #### 这里出来就只有七位了     有空把之前那个方法也跑通
+    a = []  ### 这里出来就只有七位了     有空把之前那个方法也跑通
     for i in range(len(rr)):    # 异或
         a.append(rr[i] ^ k[i])
 
@@ -140,8 +140,8 @@ def S_boxs(a)->str:
              [3,0,1,2],
              [2,1,0,3]]
 
-    #将八位的a分为两两一组，共4组
-    #要把两个拼起来，得到一个数字
+    # 将八位的a分为两两一组，共4组
+    # 要把两个拼起来，得到一个数字
     n = get_num(a)
     return bin(sbox1[n[0]][n[1]])[2:].zfill(2)+bin(sbox2[n[2]][n[3]])[2:].zfill(2)
 
@@ -155,20 +155,3 @@ def get_num(a):
         a[i] = int(a[i])
     r = a[0]*2 + a[3], a[1]*2 + a[2], a[4]*2 + a[7], a[5]*2 + a[6]
     return r
-
-# if __name__ == "__main__":
-#     text = [1,2,3,4,5,6,7,8,9,0]
-    # print(get_keys(k0))
-    # text就是要加密的文
-    # print(extend_subt([1,0,1,1]))
-    # textL = text[0:4]
-    # textR = text[4:8]
-    # print(textL,textR)
-    # print(type(S_boxs('01110011')))
-    # print(S_boxs('01110011'))
-    # print(F([1,0,1,1],[1,0,1,0,0,1,0,0]))
-    # a = '111'#变成2 来异或
-    # print(str_to_binint(a))
-    # fk1 = fk('00011011','10100100')
-    # print(fk1)
-    # print(fk('1011'+fk1,'10100100')) #两个fk'函数的密钥是不一样的
