@@ -85,10 +85,10 @@ def t3():
         if trykey > 2**8:
             break
 if __name__ == '__main__':
-    plain_text = ['11001000','10010011','11110000']
-    cipher_text = ['00111011','10000110','00011110']
-    # plain_text =['10000000']
-    # cipher_text =['00000010']
+    # plain_text = ['11001000','10010011','11110000']
+    # cipher_text = ['00111011','10000110','00011110']
+    plain_text =['10000000']
+    cipher_text =['00000010']
     # 创建新线程
     th1 = threading.Thread(target=t1,name='t1')
     th2 = threading.Thread(target=t2,name='t2')
